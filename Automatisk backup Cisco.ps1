@@ -1,5 +1,5 @@
 ﻿$usr = "admin"
-$passw = ConvertTo-SecureString –String "03-Bleiker-IKT-network" –AsPlainText -Force
+$passw = ConvertTo-SecureString –String "Password!" –AsPlainText -Force
 
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $usr, $passw 
 
