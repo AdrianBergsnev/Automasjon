@@ -1,4 +1,4 @@
-﻿Import-Module StarWindX
+﻿Import-Module Starwindx
 
 $server = New-SWServer -host 127.0.0.1 -port 3261 -user root -password starwind
 
@@ -18,9 +18,11 @@ try
 
     if ( $server.Connected )
     {
-        #create image file
+        #Create image file
         $fileName=$folder
-        New-Storage -server $server -path $path -fileName $fileName -storageSize 1024 -blockSize 512
+
+        #Stringsize is shown as MB (1024MB = 1GB)
+        New-Storage -server $server -path $path -fileName $fileName -storageSize 1024 -blockSize 4096
         
         #Create device
         $device = Add-DDDevice -server $server -path $path -fileName $fileName -sectorSize 512 -CacheMode "wb" -CacheSize 1024
