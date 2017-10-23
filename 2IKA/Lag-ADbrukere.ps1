@@ -29,10 +29,11 @@ foreach ($User in $Users)
     $Group = "CN=Elever,OU=Grupper,OU=2IKA,DC=2,DC=ika,DC=no"                            
     $Password = $User.Passord
     
-    New-ADUser -Name "$Displayname" -DisplayName "$Displayname" -SamAccountName "$SAM" -UserPrincipalName $UPN -GivenName "$UserFirstname" `
+    New-ADUser -Name "$Displayname" -DisplayName "$Displayname" -SamAccountName "$SAM" `
+    -UserPrincipalName $UPN -GivenName "$UserFirstname" `
     -Surname "$UserLastname" -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) `
     -Enabled $true -Path "$OU" -ChangePasswordAtLogon $True –PasswordNeverExpires $false -Server $ADServer
-       Write-Host "Brukernavn:" $SAM "-" "Passord" $Password
+     Write-Host "Brukernavn:" $SAM "-" "Passord" $Password
 }
 
 Add-ADGroupMember $Group -Members $ADUsers
