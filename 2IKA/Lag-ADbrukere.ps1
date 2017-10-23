@@ -2,6 +2,7 @@
 
 ### Kommentarer:
 ## Dette skriptet er hardkodet for IKT-Klassen på Hønefoss VGS. Dette skriptet oppretter brukere, og setter dem i Elevgruppe
+## Kjør dette scriptet på domenekontrolleren for å unngå komplikasjoner.
 ## Det eneste man trenger å gjøre er å passe på at "CSV" pathen stemmer med din egen .csv fil.
 ## Eksempel på hvordan hvordan en bruker ser ut på .csv filen:
 ## Fornavn;Etternavn;Passord
@@ -18,14 +19,14 @@ foreach ($User in $Users)
 {    
     $Year = Get-Date -UFormat %Y
     $Domainname = Get-ADDomain | select -ExpandProperty Forest
-    $ADUsers = Get-ADUser -Filter * -SearchBase $OU  
     $ADServer = Get-ADDomain | select -ExpandProperty RIDMaster
     $Displayname =  $User.Fornavn + " " +  $User.Etternavn          
     $UserFirstname = $User.Fornavn   
     $UserLastname = $User.Etternavn   
     $SAM = $UserFirstname.Substring(0,2) + $UserLastname.Substring(0,2) + $Year
     $UPN = $SAM + '@' + $Domainname 
-    $OU = "OU=Elever,OU=2IKA,DC=2,DC=ika,DC=no"    
+    $OU = "OU=Elever,OU=2IKA,DC=2,DC=ika,DC=no"  
+    $ADUsers = Get-ADUser -Filter * -SearchBase $OU   
     $Group = "CN=Elever,OU=Grupper,OU=2IKA,DC=2,DC=ika,DC=no"                            
     $Password = $User.Passord
     
