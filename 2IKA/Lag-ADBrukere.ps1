@@ -33,8 +33,8 @@ foreach ($User in $Users)
     New-ADUser -Name "$Displayname" -DisplayName "$Displayname" -SamAccountName "$SAM" `
     -UserPrincipalName $UPN -GivenName "$UserFirstname" `
     -Surname "$UserLastname" -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) `
-    -Enabled $true -Path "$OU" -ChangePasswordAtLogon $True –PasswordNeverExpires $false -Server $ADServer
-     Write-Host "Navn:" $Displayname "-" "Brukernavn:" $SAM "-" "Passord" $Password
+    -Enabled $true -Path "$OU" -ChangePasswordAtLogon $false –PasswordNeverExpires $true -Server $ADServer
+     Write-Host "Navn:" $Displayname "-" "Brukernavn:" $SAM "-" "Passord" $Password | Format-Table
 }
 
 Add-ADGroupMember $Group -Members $ADUsers
