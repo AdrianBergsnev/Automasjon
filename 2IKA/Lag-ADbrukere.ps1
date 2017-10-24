@@ -34,7 +34,7 @@ foreach ($User in $Users)
     -UserPrincipalName $UPN -GivenName "$UserFirstname" `
     -Surname "$UserLastname" -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) `
     -Enabled $true -Path "$OU" -ChangePasswordAtLogon $True –PasswordNeverExpires $false -Server $ADServer
-     Write-Host "Brukernavn:" $SAM "-" "Passord" $Password
+     Write-Host "Navn:" $Displayname "-" "Brukernavn:" $SAM "-" "Passord" $Password
 }
 
 Add-ADGroupMember $Group -Members $ADUsers
