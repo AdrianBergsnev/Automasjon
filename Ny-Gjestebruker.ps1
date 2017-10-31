@@ -13,7 +13,7 @@ $GjesteOU = Get-ADOrganizationalUnit -Filter * | where name -Like "Gjester"
 $Brukere = New-ADUser $Brukernavn -SamAccountName $Brukernavn -UserPrincipalName $UPN -DisplayName '$Brukernavn' `
 -AccountPassword $Passord -Server $ADserver -Enabled $true -Path $GjesteOU -PasswordNeverExpires $true -AccountExpirationDate $Expirationdate
 
-$Brukere | Write-Host
+$Brukere
 
 $Gjester = Get-ADUser -Filter * -SearchBase $GjesteOU
 
