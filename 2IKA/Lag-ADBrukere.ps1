@@ -25,9 +25,9 @@ foreach ($User in $Users)
     $UserLastname = $User.Etternavn   
     $SAM = $UserFirstname.Substring(0,2) + $UserLastname.Substring(0,2) + $Year
     $UPN = $SAM + '@' + $Domainname 
-    $OU = "OU=Elever,OU=2IKA,DC=2,DC=ika,DC=no"  
+    $OU = Get-ADOrganizationalUnit -Filter * | where name -Like "Elever" 
     $ADUsers = Get-ADUser -Filter * -SearchBase $OU   
-    $Group = "CN=Elever,OU=Grupper,OU=2IKA,DC=2,DC=ika,DC=no"                            
+    $Group = Get-ADGroup -Filter * | where name -Like "Elever"                           
     $Password = $User.Passord
     
     New-ADUser -Name "$Displayname" -DisplayName "$Displayname" -SamAccountName "$SAM" `
