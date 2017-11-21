@@ -11,7 +11,7 @@
 ## (eksempel): OlNo2017
 ## Klasselisten for IKT elever 2017-2018 ligger i Klasseliste.csv på samme repo
 ## Output med brukernavn og passord havner i terminalen etter man har kjørt scriptet.
-
+## NB! Husk å fjerne æøå fra Klasseliste.csv
 $Users = Import-Csv -Delimiter ";" -Path "C:\Users\Administrator\Desktop\Powershell\Klasseliste.csv"      
 
 ## Genererer tilfeldig passord for brukeren
